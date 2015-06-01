@@ -1,0 +1,7 @@
+<Alloy>
+	<Window class="container">
+		
+		<Widget id="wv" src="com.imobicloud.html" scripts="test.jsss" onListClick="wvListClick"/>
+		
+	</Window>
+</Alloy>
