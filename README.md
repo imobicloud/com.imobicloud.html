@@ -52,3 +52,8 @@ js
 Changes log:
 	
 - You have to add .jsss, .css manually		
+	<Widget id="wv" src="com.imobicloud.html" 
+	    csss="test.css"
+	    scripts="test.jsss"
+	    onYY="wvYY"
+	/>
