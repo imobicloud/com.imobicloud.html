@@ -111,7 +111,7 @@ var UTILS = {
 	
 	updateViewport: function(width, height) {
 		if (width == null) { width = window.innerWidth; }
-		if (height == null) { width = window.innerHeight; }
+		if (height == null) { height = window.innerHeight; }
 		
 		var m = document.createElement("meta");
 		m.name = 'viewport';
