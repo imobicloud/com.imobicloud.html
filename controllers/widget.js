@@ -109,5 +109,5 @@ function wvLoaded(e) {
 
 function fireEvent(e) {
 	Ti.API.info('com.imobicloud.html:fireEvent ' + JSON.stringify( e ));
-	$.trigger(e);
+	$.trigger(e.etype, e);
 }

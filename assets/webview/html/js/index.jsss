@@ -107,6 +107,22 @@ var UTILS = {
 	
 	hideAI: function() {
 		$('#ai').hide();
+	},
+	
+	updateViewport: function(width, height) {
+		if (width == null) { width = window.innerWidth; }
+		if (height == null) { width = window.innerHeight; }
+		
+		var m = document.createElement("meta");
+		m.name = 'viewport';
+		m.content = 'user-scalable=no, width=' + width + ', height=' + height + ', initial-scale=1, maximum-scale=1';
+		document.getElementsByTagName("head")[0].appendChild(m);
+		
+		$('html, body').css({
+			width: width + 'px',
+			height: height + 'px',
+			overflow: 'hidden'
+		});
 	}
 };
 
