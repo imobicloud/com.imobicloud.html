@@ -16,32 +16,36 @@ init(arguments[0]);
  }
  * */
 function init(params) {
-	var html = Ti.Filesystem.getFile( Ti.Filesystem.resourcesDirectory, params.url || '/webview/html/index.html' ).read().toString(),
+	var url = params.url || '/webview/html/index.html';
+	var html = Ti.Filesystem.getFile( Ti.Filesystem.resourcesDirectory, url).read().toString(),
   		csss = params.csss ? params.csss.split(',') : [],
   		scripts = params.scripts ? params.scripts.split(',') : [],
   		css = [],
   		script = [];
 	
+	var path = url.match(/^.*[\\\/]/, '')[0];
+		path = path.substr(1); // remove / character
+	
 	csss.unshift( 'index.css' );
 	scripts.unshift( 'libs/jquery.jsss', 'libs/fastclick.jsss', 'index.jsss' );
 	
 	for(var i=0,ii=csss.length; i<ii; i++){
-		css.push(' <link rel="stylesheet" href="webview/html/css/' + csss[i] + '"> ');
+		css.push(' <link rel="stylesheet" href="' + path + 'css/' + csss[i] + '"> ');
 	}
 	
 	for(var i=0,ii=scripts.length; i<ii; i++){
 		var js = scripts[i];
 		if (js.indexOf(' ') == -1) {
-			script.push(' <script src="webview/html/js/' + js + '"></script> ');
+			script.push(' <script src="' + path + 'js/' + js + '"></script> ');
 		} else {
 			// ex: type url inline
 			// riot/tag templates/todo.tag
 			// riot/tag templates/todo.tag true
 			var parts = js.split(' ');
 			if (!parts[2]) {
-				script.push(' <script type="' + parts[0] + '" src="webview/html/js/' + parts[1] + '"></script> ');
+				script.push(' <script type="' + parts[0] + '" src="' + path + 'js/' + parts[1] + '"></script> ');
 			} else {
-				script.push(' <script type="' + parts[0] + '">' + Ti.Filesystem.getFile( Ti.Filesystem.resourcesDirectory, 'webview/html/js/' + parts[1] ).read().toString() + '</script> ');
+				script.push(' <script type="' + parts[0] + '">' + Ti.Filesystem.getFile( Ti.Filesystem.resourcesDirectory, '' + path + 'js/' + parts[1] ).read().toString() + '</script> ');
 			}
 		}
 	}
