@@ -27,7 +27,7 @@ function init(params) {
 		path = path.substr(1); // remove / character
 	
 	csss.unshift( 'index.css' );
-	scripts.unshift( 'libs/jquery.jsss', 'libs/fastclick.jsss', 'index.jsss' );
+	scripts.unshift( 'libs/jquery._js', 'libs/fastclick._js', 'index._js' );
 	
 	for(var i=0,ii=csss.length; i<ii; i++){
 		css.push(' <link rel="stylesheet" href="' + path + 'css/' + csss[i] + '"> ');
