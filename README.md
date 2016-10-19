@@ -10,6 +10,7 @@ assets
 	- test._js has a function XX
 		function XX(params) {
 			$('#app').html(params.id);
+			UTILS.hideAI();
 		}
 	- test._js fire event YY
 		UTILS.fireEvent(e, 'YY', { id: 1 });	
