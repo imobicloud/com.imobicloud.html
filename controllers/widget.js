@@ -11,11 +11,13 @@ init(arguments[0]);
  params = {
  	csss: 'templates/stories,templates/comment',
  	scripts: 'libs/Event.min,templates/stories,templates/comment,riot/tag templates/todo.tag',
- 	
  	url: '/webview/html/index.html'
  }
  * */
 function init(params) {
+	var exclude = ['id', 'children', 'csss', 'scripts', 'url'];
+	$.container.applyProperties(_.omit(params, exclude));
+	
 	var url = params.url || '/webview/html/index.html';
 	var html = Ti.Filesystem.getFile( Ti.Filesystem.resourcesDirectory, url).read().toString(),
   		csss = params.csss ? params.csss.split(',') : [],
