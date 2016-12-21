@@ -16,14 +16,24 @@ img {
 	.expand { content: url(../images/button-expand@2x.png); }
 }
 
+/* iphone 7 and 5SE */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   	.collapse { content: url(../images/button-collapse@2x.png); }
 	.expand { content: url(../images/button-expand@2x.png); }
 }
 
+/* iphone 7 plus */
 @media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
   	.collapse { content: url(../images/button-collapse@3x.png); }
 	.expand { content: url(../images/button-expand@3x.png); }
 }
 
+/* iphone 7 */
+@media screen and (device-width: 375px) {
+    
+}
 
+/* iphone 5SE */
+@media screen and (device-width: 320px) {
+    
+}
