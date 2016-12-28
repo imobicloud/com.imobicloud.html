@@ -25,6 +25,8 @@ function init(params) {
   		css = [],
   		script = [];
 
+	script.push(' <script>var OS_IOS = ' + JSON.stringify(OS_IOS) + ', OS_ANDROID = ' + JSON.stringify(OS_ANDROID) + ';</script> ');
+
 	var path = url.match(/^.*[\\\/]/, '')[0];
 		path = path.substr(1); // remove / character
 
