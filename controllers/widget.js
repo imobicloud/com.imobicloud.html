@@ -17,24 +17,24 @@ init(arguments[0]);
 function init(params) {
 	var exclude = ['id', 'children', 'csss', 'scripts', 'url'];
 	$.container.applyProperties(_.omit(params, exclude));
-	
+
 	var url = params.url || '/webview/html/index.html';
 	var html = Ti.Filesystem.getFile( Ti.Filesystem.resourcesDirectory, url).read().toString(),
   		csss = params.csss ? params.csss.split(',') : [],
   		scripts = params.scripts ? params.scripts.split(',') : [],
   		css = [],
   		script = [];
-	
+
 	var path = url.match(/^.*[\\\/]/, '')[0];
 		path = path.substr(1); // remove / character
-	
+
 	csss.unshift( 'index.css' );
 	scripts.unshift( 'libs/jquery._js', 'libs/fastclick._js', 'index._js' );
-	
+
 	for(var i=0,ii=csss.length; i<ii; i++){
 		css.push(' <link rel="stylesheet" href="' + path + 'css/' + csss[i] + '"> ');
 	}
-	
+
 	for(var i=0,ii=scripts.length; i<ii; i++){
 		var js = scripts[i];
 		if (js.indexOf(' ') == -1) {
@@ -51,25 +51,27 @@ function init(params) {
 			}
 		}
 	}
-	
-	$.container.html = html
-		.replace('<!-- CSS PLACEHOLDER -->', css.join('\n\t'))
-		.replace('<!-- JS PLACEHOLDER -->', script.join('\n\t'));
-	
+
+	$.container.setHtml(
+		html
+			.replace('<!-- CSS PLACEHOLDER -->', css.join('\n\t'))
+			.replace('<!-- JS PLACEHOLDER -->', script.join('\n\t'))
+	);
+
   	//
-  	
+
   	Ti.App.addEventListener(eventName,  fireEvent);
-  	
+
   	Ti.API.info('com.imobicloud.html:load ' + eventName);
 }
 
 exports.unload = function() {
   	Ti.App.removeEventListener(eventName,  fireEvent);
-  	
+
   	// if (OS_ANDROID) {
   		// $.container.release();
   	// }
-  	
+
   	Ti.API.info('com.imobicloud.html:unload ' + eventName);
 };
 
@@ -96,15 +98,15 @@ function checkCondition() {
 
 function run(params, key) {
 	var str = '();'; // default - if params is undefined
-	
+
 	if ( params ) {
 		params.html && ( params.html = escape(params.html) );
 		str = '(' + JSON.stringify(params) + ');';
-				
+
 	} else if ( params == '' ) { // params is ''
 		str = '("");';
 	}
-	
+
 	$.container.evalJS( key + str );
 }
 
