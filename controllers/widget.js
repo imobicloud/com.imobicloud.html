@@ -114,6 +114,7 @@ function run(params, key) {
 
 function wvLoaded(e) {
   	wvReady = true;
+	fireEvent({ etype: 'ready' });
   	checkCondition();
 }
 
